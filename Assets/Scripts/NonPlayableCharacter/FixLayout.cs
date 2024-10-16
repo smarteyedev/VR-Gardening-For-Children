@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Smarteye.NPC
+namespace Smarteye.VRGardening.NPC
 {
-
     public class FixLayout : MonoBehaviour
     {
         public RectTransform parentRectTransform;

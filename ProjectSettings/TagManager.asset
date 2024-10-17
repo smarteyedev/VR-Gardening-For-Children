@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Left Hand
   - Right Hand
+  - Fruit
+  - Fertilizer
+  - Seed
+  - Water
+  - WaterDroplet
+  - Sovel
   layers:
   - Default
   - TransparentFX
@@ -13,7 +19,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Interaction
   - 
   - 
   - 

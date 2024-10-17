@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d30b21a2a2225438eb9e9b7096735c, type: 3}
   m_Name: Rani-DialogSectionArea-PlantIntroduction
   m_EditorClassIdentifier: 
-  dialogArea: 2
+  interactionArea: 2
   dialogContents:
     openingDialogTitle: 'Halo! Aku Rani, pemandu teman-teman di Desa Tanam Pohon.
       Ada yang bisa aku bantu? '
@@ -21,50 +21,44 @@ MonoBehaviour:
       customContent:
         playerQuestion: 
         formatUI: {fileID: 0}
-      anserWithTextContent:
-        playerQuestion: Apa itu Desa Tanam Pohon?
-        NpcAnswer: "Desa Tanam Pohon adalah tempat di mana teman-teman bisa belajar
-          tentang tanaman dan cara menanamnya! Tanaman yang ada pada desa ini adalah
-          tomat dan jeruk.\r"
+      answerWithTextContent:
+        playerQuestion: sdafds
+        NpcAnswer: dsafdsaf
         formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
           type: 3}
-      anserWithTextAndPhotoContent:
+      answerWithTextAndPhotoContent:
         playerQuestion: 
-        illustarationImage: {fileID: 0}
+        PhotoSprite: {fileID: 0}
         firstParagraph: 
-        SecondParagraph: 
+        secondParagraph: 
         formatUI: {fileID: 0}
     - contentType: 1
       customContent:
         playerQuestion: 
         formatUI: {fileID: 0}
-      anserWithTextContent:
-        playerQuestion: Mengapa menanam itu penting?
-        NpcAnswer: Teman-teman bisa masuk ke dalam rumah kaca di belakang dan mulai
-          mengerjakan misi untuk belajar menanam!
+      answerWithTextContent:
+        playerQuestion: dsafsd
+        NpcAnswer: sdafdsafsda
         formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
           type: 3}
-      anserWithTextAndPhotoContent:
+      answerWithTextAndPhotoContent:
         playerQuestion: 
-        illustarationImage: {fileID: 0}
+        PhotoSprite: {fileID: 0}
         firstParagraph: 
-        SecondParagraph: 
+        secondParagraph: 
         formatUI: {fileID: 0}
     - contentType: 1
       customContent:
         playerQuestion: 
         formatUI: {fileID: 0}
-      anserWithTextContent:
-        playerQuestion: Bagaimana cara aku bisa mulai menanam?
-        NpcAnswer: Tanaman memberi kita oksigen untuk bernapas, menjaga lingkungan,
-          dan juga berperan penting bagi hewan. Selain itu, kita bisa mendapatkan
-          makanan yang enak dan sehat dari tanaman. Dengan menanam, kita membuat
-          bumi dan diri kita lebih sehat!
+      answerWithTextContent:
+        playerQuestion: safdsa
+        NpcAnswer: adfsafdsa
         formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
           type: 3}
-      anserWithTextAndPhotoContent:
+      answerWithTextAndPhotoContent:
         playerQuestion: 
-        illustarationImage: {fileID: 0}
+        PhotoSprite: {fileID: 0}
         firstParagraph: 
-        SecondParagraph: 
+        secondParagraph: 
         formatUI: {fileID: 0}

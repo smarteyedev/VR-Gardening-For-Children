@@ -21,15 +21,15 @@ namespace Smarteye.VRGardening.NPC
         }
 
         [Header("UI Dependencies")]
-        public RectTransform parentView;
-        public TextMeshProUGUI textTitle;
-        public TextMeshProUGUI textDescription;
-        public Image imgContent;
+        [SerializeField] private RectTransform parentView;
+        [SerializeField] private TextMeshProUGUI textTitle;
+        [SerializeField] private TextMeshProUGUI textDescription;
+        [SerializeField] private Image imgContent;
 
         [Space(10f)]
-        public Sprite btnSpriteNonActive;
-        public Sprite btnSpriteActive;
-        public List<Image> btnOption;
+        [SerializeField] private Sprite btnSpriteNonActive;
+        [SerializeField] private Sprite btnSpriteActive;
+        [SerializeField] private List<Image> btnOption;
 
         private int m_index = 2; // Default index
 
@@ -59,7 +59,7 @@ namespace Smarteye.VRGardening.NPC
             }
         }
 
-        public void UpdateBtnSprite()
+        private void UpdateBtnSprite()
         {
             for (int i = 0; i < btnOption.Count; i++)
             {
@@ -72,6 +72,7 @@ namespace Smarteye.VRGardening.NPC
             }
         }
 
+        // is called on button event
         public void OnChangeContentView(int newIndex)
         {
             if (newIndex < 0 || newIndex >= customContents.Count)

@@ -43,27 +43,27 @@ namespace Smarteye.VRGardening.NPC
         }
 
         // Helper function to set button listeners
-        private void SetButtonListeners(Button closeButton, Button backButton, Action<DialogManager.DialogState> backToQuestionFunction)
+        private void SetButtonListeners(Button closeButton, Button backButton, Action<InteractionManager.DialogState> backToQuestionFunction)
         {
             closeButton.onClick.AddListener(() =>
             {
-                backToQuestionFunction(DialogManager.DialogState.DialogIdle);
+                backToQuestionFunction(InteractionManager.DialogState.InteractionIdle);
                 Destroy(this.gameObject);
             });
 
             backButton.onClick.AddListener(() =>
             {
-                backToQuestionFunction(DialogManager.DialogState.OpeningQuestion);
+                backToQuestionFunction(InteractionManager.DialogState.OpeningQuestion);
                 Destroy(this.gameObject);
             });
         }
 
-        public void SetupAnswerCanvas(object[] argDataAnswer, Action<DialogManager.DialogState> BackToQuestionFunction)
+        public void SetupAnswerCanvas(object[] argDataAnswer, Action<InteractionManager.DialogState> BackToQuestionFunction)
         {
             DialogSection.DialogContent.QnAContent.ContentType myType =
                 (DialogSection.DialogContent.QnAContent.ContentType)argDataAnswer[0];
 
-            if (myType == DialogSection.DialogContent.QnAContent.ContentType.AnserWithText)
+            if (myType == DialogSection.DialogContent.QnAContent.ContentType.AnswerWithText)
             {
                 string text1 = (string)argDataAnswer[1];
 
@@ -76,7 +76,7 @@ namespace Smarteye.VRGardening.NPC
                     BackToQuestionFunction
                 );
             }
-            else if (myType == DialogSection.DialogContent.QnAContent.ContentType.AnserWithTextAndPhoto)
+            else if (myType == DialogSection.DialogContent.QnAContent.ContentType.AnswerWithTextAndPhoto)
             {
                 string text1 = (string)argDataAnswer[1];
                 string text2 = (string)argDataAnswer[2];
@@ -99,9 +99,39 @@ namespace Smarteye.VRGardening.NPC
 
             btnCloseCanvas.onClick.AddListener(() =>
             {
-                BackToQuestionFunction(DialogManager.DialogState.DialogIdle);
+                BackToQuestionFunction(InteractionManager.DialogState.InteractionIdle);
                 Destroy(this.gameObject);
             });
+        }
+
+        public void SetupFeedbackCanvas(object[] argDataFeedback, Action<InteractionManager.DialogState> BackToQuestionFunction)
+        {
+            DirectFeedback.FeedbackContent.FeedbackType feedbackType = (DirectFeedback.FeedbackContent.FeedbackType)argDataFeedback[0];
+
+            if (feedbackType == DirectFeedback.FeedbackContent.FeedbackType.TextPopup)
+            {
+
+            }
+            else if (feedbackType == DirectFeedback.FeedbackContent.FeedbackType.TextPhotoPopup)
+            {
+                string text1 = (string)argDataFeedback[1];
+                string text2 = (string)argDataFeedback[2];
+                Sprite spriteImage = (Sprite)argDataFeedback[3];
+
+                ValidateNotNull(anserWithTextAndPhotoComponent.textParagraph1, "anserWithTextAndPhotoComponent.textParagraph1");
+                ValidateNotNull(anserWithTextAndPhotoComponent.textParagraph2, "anserWithTextAndPhotoComponent.textParagraph2");
+                ValidateNotNull(anserWithTextAndPhotoComponent.imageItem, "anserWithTextAndPhotoComponent.imageItem");
+
+                anserWithTextAndPhotoComponent.textParagraph1.text = text1;
+                anserWithTextAndPhotoComponent.textParagraph2.text = text2;
+                anserWithTextAndPhotoComponent.imageItem.sprite = spriteImage;
+
+                btnCloseCanvas.onClick.AddListener(() =>
+                {
+                    BackToQuestionFunction(InteractionManager.DialogState.None);
+                    Destroy(this.gameObject);
+                });
+            }
         }
     }
 }

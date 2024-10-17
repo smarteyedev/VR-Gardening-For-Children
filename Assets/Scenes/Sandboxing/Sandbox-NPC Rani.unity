@@ -914,7 +914,7 @@ MonoBehaviour:
   m_stagingData:
     openingDialogTitle: 
     QNAContents: []
-  dialogManager: {fileID: 1258438255}
+  interactionManager: {fileID: 1258438255}
   closeBtn: {fileID: 187682810}
   textOpeningDialog: {fileID: 1786120058}
   parentOptionBtn: {fileID: 2092206306}
@@ -999,6 +999,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258438254}
   - component: {fileID: 1258438255}
+  - component: {fileID: 1258438256}
   m_Layer: 0
   m_Name: NPC Rani
   m_TagString: Untagged
@@ -1037,13 +1038,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d17e66d422cc8f479f539b20f296adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentInteractionArea: 0
   currentDialogState: 0
-  currentDialogArea: 0
   ListDialogSection:
   - {fileID: 11400000, guid: f15c76083cc82b94da30e0296e8c8ccf, type: 2}
   - {fileID: 11400000, guid: cd13349f842702c43b07cf383c42d3eb, type: 2}
+  ListDirectFeedback:
+  - {fileID: 11400000, guid: 372aa2b826ee96a4f80e8278b26cf64d, type: 2}
   canvasDialogQuestion: {fileID: 1061528786}
   canvasBtnOpenDialog: {fileID: 1889305138}
+  feedbackController: {fileID: 1258438256}
+--- !u!114 &1258438256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258438253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3fed3319daf78498b52eb99648dab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_stagingData:
+    feedbackType: 0
+    identity: 0
+    textPopupContent:
+      scriptText: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    textPhotoPopupContent:
+      firstParagraph: 
+      secondParagraph: 
+      PhotoSprite: {fileID: 0}
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    animationContent:
+      animationName: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+  parentCanvas: {fileID: 676575844}
+  prefabFeedbackCanvas: {fileID: 4915553378807482665, guid: fc2ae93423a60e74e8e24338e3722c75,
+    type: 3}
+  interactionManager: {fileID: 1258438255}
 --- !u!1 &1281427800
 GameObject:
   m_ObjectHideFlags: 0

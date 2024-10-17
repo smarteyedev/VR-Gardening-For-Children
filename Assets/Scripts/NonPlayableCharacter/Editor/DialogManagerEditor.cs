@@ -1,9 +1,10 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
 namespace Smarteye.VRGardening.NPC
 {
-    [CustomEditor(typeof(DialogManager))]
+    // [CustomEditor(typeof(DialogManager))]
     public class DialogManagerEditor : Editor
     {
         /* private SerializedProperty listDialogSection;
@@ -93,3 +94,4 @@ namespace Smarteye.VRGardening.NPC
         } */
     }
 }
+#endif

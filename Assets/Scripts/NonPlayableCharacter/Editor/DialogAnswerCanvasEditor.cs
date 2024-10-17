@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -31,10 +32,10 @@ namespace Smarteye.VRGardening.NPC
 
             switch (type)
             {
-                case DialogSection.DialogContent.QnAContent.ContentType.AnserWithText:
+                case DialogSection.DialogContent.QnAContent.ContentType.AnswerWithText:
                     EditorGUILayout.PropertyField(anserWithTextComponent, new GUIContent("Anser With Text Component"), true);
                     break;
-                case DialogSection.DialogContent.QnAContent.ContentType.AnserWithTextAndPhoto:
+                case DialogSection.DialogContent.QnAContent.ContentType.AnswerWithTextAndPhoto:
                     EditorGUILayout.PropertyField(anserWithTextAndPhotoComponent, new GUIContent("Anser With Text And Photo Component"), true);
                     break;
                 case DialogSection.DialogContent.QnAContent.ContentType.Custom:
@@ -49,6 +50,5 @@ namespace Smarteye.VRGardening.NPC
             serializedObject.ApplyModifiedProperties();
         }
     }
-
-
 }
+#endif

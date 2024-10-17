@@ -1,13 +1,12 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Smarteye.VRGardening.NPC
 {
-    [CreateAssetMenu(fileName = "NewDialogSection", menuName = "Dialog System/Dialog Section")]
+    [CreateAssetMenu(fileName = "NewDialogSection", menuName = "Interaction Content/Dialog Section")]
     public class DialogSection : ScriptableObject
     {
-        public DialogArea dialogArea;
+        public InteractionArea interactionArea;
         public DialogContent dialogContents;
 
         [System.Serializable]
@@ -19,12 +18,12 @@ namespace Smarteye.VRGardening.NPC
             [System.Serializable]
             public class QnAContent
             {
-                public enum ContentType { Custom, AnserWithText, AnserWithTextAndPhoto }
+                public enum ContentType { Custom, AnswerWithText, AnswerWithTextAndPhoto }
                 public ContentType contentType;
 
                 public CustomContent customContent;
-                public AnserWithTextContent anserWithTextContent;
-                public AnserWithTextAndPhotoContent anserWithTextAndPhotoContent;
+                public AnswerWithTextContent answerWithTextContent;
+                public AnswerWithTextAndPhotoContent answerWithTextAndPhotoContent;
 
                 // Fungsi GetItemData diletakkan di sini
                 public object GetItemData()
@@ -35,39 +34,39 @@ namespace Smarteye.VRGardening.NPC
                             ValidateCustomContent();
                             return customContent;
 
-                        case ContentType.AnserWithText:
-                            ValidateAnserWithTextContent();
-                            return anserWithTextContent;
+                        case ContentType.AnswerWithText:
+                            ValidateAnswerWithTextContent();
+                            return answerWithTextContent;
 
-                        case ContentType.AnserWithTextAndPhoto:
-                            ValidateAnserWithTextAndPhotoContent();
-                            return anserWithTextAndPhotoContent;
+                        case ContentType.AnswerWithTextAndPhoto:
+                            ValidateAnswerWithTextAndPhotoContent();
+                            return answerWithTextAndPhotoContent;
 
                         default:
-                            throw new InvalidOperationException($"Invalid content type: {contentType}");
+                            throw new System.InvalidOperationException($"Invalid content type: {contentType}");
                     }
                 }
 
                 private void ValidateCustomContent()
                 {
                     if (string.IsNullOrEmpty(customContent.playerQuestion) || customContent.formatUI == null)
-                        throw new ArgumentNullException(nameof(customContent.playerQuestion), "CustomContent playerQuestion cannot be null or empty.");
+                        throw new System.ArgumentNullException(nameof(customContent.playerQuestion), "CustomContent playerQuestion cannot be null or empty.");
                 }
 
-                private void ValidateAnserWithTextContent()
+                private void ValidateAnswerWithTextContent()
                 {
-                    if (string.IsNullOrEmpty(anserWithTextContent.playerQuestion) ||
-                        string.IsNullOrEmpty(anserWithTextContent.NpcAnswer) || anserWithTextContent.formatUI == null)
-                        throw new ArgumentNullException(nameof(anserWithTextContent), "AnserWithTextContent fields cannot be null or empty.");
+                    if (string.IsNullOrEmpty(answerWithTextContent.playerQuestion) ||
+                        string.IsNullOrEmpty(answerWithTextContent.NpcAnswer) || answerWithTextContent.formatUI == null)
+                        throw new System.ArgumentNullException(nameof(answerWithTextContent), "AnswerWithTextContent fields cannot be null or empty.");
                 }
 
-                private void ValidateAnserWithTextAndPhotoContent()
+                private void ValidateAnswerWithTextAndPhotoContent()
                 {
-                    if (string.IsNullOrEmpty(anserWithTextAndPhotoContent.playerQuestion) ||
-                        string.IsNullOrEmpty(anserWithTextAndPhotoContent.firstParagraph) ||
-                        string.IsNullOrEmpty(anserWithTextAndPhotoContent.SecondParagraph) ||
-                        anserWithTextAndPhotoContent.illustarationImage == null || anserWithTextAndPhotoContent.formatUI == null)
-                        throw new ArgumentNullException(nameof(anserWithTextAndPhotoContent), "AnserWithTextAndPhotoContent fields cannot be null or empty.");
+                    if (string.IsNullOrEmpty(answerWithTextAndPhotoContent.playerQuestion) ||
+                        string.IsNullOrEmpty(answerWithTextAndPhotoContent.firstParagraph) ||
+                        string.IsNullOrEmpty(answerWithTextAndPhotoContent.secondParagraph) ||
+                        answerWithTextAndPhotoContent.PhotoSprite == null || answerWithTextAndPhotoContent.formatUI == null)
+                        throw new System.ArgumentNullException(nameof(answerWithTextAndPhotoContent), "AnswerWithTextAndPhotoContent fields cannot be null or empty.");
                 }
             }
 
@@ -79,7 +78,7 @@ namespace Smarteye.VRGardening.NPC
             }
 
             [System.Serializable]
-            public class AnserWithTextContent
+            public class AnswerWithTextContent
             {
                 public string playerQuestion;
                 [TextArea] public string NpcAnswer;
@@ -87,12 +86,12 @@ namespace Smarteye.VRGardening.NPC
             }
 
             [System.Serializable]
-            public class AnserWithTextAndPhotoContent
+            public class AnswerWithTextAndPhotoContent
             {
                 public string playerQuestion;
-                public Sprite illustarationImage;
+                public Sprite PhotoSprite;
                 [TextArea] public string firstParagraph;
-                [TextArea] public string SecondParagraph;
+                [TextArea] public string secondParagraph;
                 public DialogAnswerCanvas formatUI;
             }
         }

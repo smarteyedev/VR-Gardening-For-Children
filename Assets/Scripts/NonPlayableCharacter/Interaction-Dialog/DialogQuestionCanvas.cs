@@ -13,17 +13,17 @@ namespace Smarteye.VRGardening.NPC
         [SerializeField] private DialogSection.DialogContent m_stagingData;
 
         [Header("Component Dependencies")]
-        public DialogManager dialogManager;
-        public Button closeBtn;
-        public TextMeshProUGUI textOpeningDialog; // From NPC to player
+        [SerializeField] private InteractionManager interactionManager;
+        [SerializeField] private Button closeBtn;
+        [SerializeField] private TextMeshProUGUI textOpeningDialog; // From NPC to player
 
         [Space(4f)]
-        public GameObject parentOptionBtn;
-        public GameObject prefabOptionBtn;
+        [SerializeField] private GameObject parentOptionBtn;
+        [SerializeField] private GameObject prefabOptionBtn;
 
         [Header("Answer Canvas Config")]
         [Space(4f)]
-        public Transform instantiatePosition;
+        [SerializeField] private Transform instantiatePosition;
 
         private void Start()
         {
@@ -72,17 +72,17 @@ namespace Smarteye.VRGardening.NPC
                     AssignButtonListener(textBtn, () => OpenAnswerCanvas(customContent.formatUI, contentDatas));
                     textBtn.GetComponentInChildren<TextMeshProUGUI>().text = customContent.playerQuestion;
                 }
-                else if (itemData is DialogSection.DialogContent.AnserWithTextContent anserWithTextContent)
+                else if (itemData is DialogSection.DialogContent.AnswerWithTextContent anserWithTextContent)
                 {
                     // Contoh penggunaan untuk AnserWithTextContent
                     object[] contentDatas = new object[2] { m_stagingData.QNAContents[i].contentType, anserWithTextContent.NpcAnswer };
                     AssignButtonListener(textBtn, () => OpenAnswerCanvas(anserWithTextContent.formatUI, contentDatas));
                     textBtn.GetComponentInChildren<TextMeshProUGUI>().text = anserWithTextContent.playerQuestion;
                 }
-                else if (itemData is DialogSection.DialogContent.AnserWithTextAndPhotoContent anserWithTextAndPhotoContent)
+                else if (itemData is DialogSection.DialogContent.AnswerWithTextAndPhotoContent anserWithTextAndPhotoContent)
                 {
                     // Contoh penggunaan untuk AnserWithTextAndPhotoContent
-                    object[] contentDatas = new object[4] { m_stagingData.QNAContents[i].contentType, anserWithTextAndPhotoContent.firstParagraph, anserWithTextAndPhotoContent.SecondParagraph, anserWithTextAndPhotoContent.illustarationImage };
+                    object[] contentDatas = new object[4] { m_stagingData.QNAContents[i].contentType, anserWithTextAndPhotoContent.firstParagraph, anserWithTextAndPhotoContent.secondParagraph, anserWithTextAndPhotoContent.PhotoSprite };
                     AssignButtonListener(textBtn, () => OpenAnswerCanvas(anserWithTextAndPhotoContent.formatUI, contentDatas));
                     textBtn.GetComponentInChildren<TextMeshProUGUI>().text = anserWithTextAndPhotoContent.playerQuestion;
                 }
@@ -107,15 +107,15 @@ namespace Smarteye.VRGardening.NPC
             DialogAnswerCanvas ansCom = Instantiate(prefabCanvas, instantiatePosition);
             ansCom.SetupAnswerCanvas(
                 argDataAnswer: argData,
-                BackToQuestionFunction: dialogManager.UpdateDialogeState
+                BackToQuestionFunction: interactionManager.UpdateDialogeState
             );
 
-            dialogManager.UpdateDialogeState(DialogManager.DialogState.AnsweringQuestion);
+            interactionManager.UpdateDialogeState(InteractionManager.DialogState.AnsweringQuestion);
         }
 
         public void CloseDialogQuestionCanvas()
         {
-            dialogManager.UpdateDialogeState(DialogManager.DialogState.DialogIdle);
+            interactionManager.UpdateDialogeState(InteractionManager.DialogState.InteractionIdle);
         }
     }
 }

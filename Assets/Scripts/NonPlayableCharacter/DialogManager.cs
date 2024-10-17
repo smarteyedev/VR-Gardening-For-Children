@@ -6,19 +6,22 @@ using UnityEngine.UI;
 
 namespace Smarteye.VRGardening.NPC
 {
+    public enum DialogArea
+    {
+        None, Welcoming, PlantIntroduction, Gardening
+    }
+
     public class DialogManager : MonoBehaviour
     {
         public enum DialogState
         {
             DialogIdle, OpeningQuestion, AnsweringQuestion
-
-            /* 1. dialog mati -> button nyala	=> DialogIdle
-                2. btn mati -> dialog nyala	=> OpeningQuestion
-                3. btn mati -> dialog mati	=> AnsweringQuestion */
         }
 
         [Header("Dialog Config")]
         [Space(4f)]
+        public DialogState currentDialogState;
+        public DialogArea currentDialogArea = DialogArea.None;
         public List<DialogSection> ListDialogSection;
 
         [Serializable]
@@ -37,11 +40,7 @@ namespace Smarteye.VRGardening.NPC
                 [Serializable]
                 public struct QnAContent
                 {
-                    [Serializable]
-                    public enum ContentType
-                    {
-                        Custom, AnserWithText, AnserWithTextAndPhoto
-                    }
+                    public enum ContentType { Custom, AnserWithText, AnserWithTextAndPhoto }
                     public ContentType contentType;
 
                     public CustomContent customContent;
@@ -51,40 +50,25 @@ namespace Smarteye.VRGardening.NPC
                     [Serializable]
                     public struct CustomContent
                     {
-                        [Header("Custom Answer")]
-                        [TextArea]
-                        public string playerQuestion;
-
-                        [Space(4f)]
+                        [TextArea] public string playerQuestion;
                         public DialogAnswerCanvas formatUI;
                     }
 
                     [Serializable]
                     public struct AnserWithTextContent
                     {
-                        [Header("Anser with Text")]
-                        [TextArea]
-                        public string playerQuestion;
-                        [TextArea]
-                        public string NpcAnswer;
-
-                        [Space(4f)]
+                        [TextArea] public string playerQuestion;
+                        [TextArea] public string NpcAnswer;
                         public DialogAnswerCanvas formatUI;
                     }
 
                     [Serializable]
                     public struct AnserWithTextAndPhotoContent
                     {
-                        [Header("Anser with Text and Photo")]
-                        [TextArea]
-                        public string playerQuestion;
+                        [TextArea] public string playerQuestion;
                         public Sprite illustarationImage;
-                        [TextArea]
-                        public string firstParagraph;
-                        [TextArea]
-                        public string SecondParagraph;
-
-                        [Space(4f)]
+                        [TextArea] public string firstParagraph;
+                        [TextArea] public string SecondParagraph;
                         public DialogAnswerCanvas formatUI;
                     }
 
@@ -94,13 +78,13 @@ namespace Smarteye.VRGardening.NPC
                         {
                             case ContentType.Custom:
                                 if (string.IsNullOrEmpty(customContent.playerQuestion) || customContent.formatUI == null)
-                                    throw new InvalidOperationException("CustomContent playerQuestion cannot be null or empty.");
+                                    throw new ArgumentNullException(nameof(customContent.playerQuestion), "CustomContent playerQuestion cannot be null or empty.");
                                 return customContent;
 
                             case ContentType.AnserWithText:
                                 if (string.IsNullOrEmpty(anserWithTextContent.playerQuestion) ||
-                                string.IsNullOrEmpty(anserWithTextContent.NpcAnswer) || anserWithTextContent.formatUI == null)
-                                    throw new InvalidOperationException("AnserWithTextContent fields cannot be null or empty.");
+                                    string.IsNullOrEmpty(anserWithTextContent.NpcAnswer) || anserWithTextContent.formatUI == null)
+                                    throw new ArgumentNullException(nameof(anserWithTextContent), "AnserWithTextContent fields cannot be null or empty.");
                                 return anserWithTextContent;
 
                             case ContentType.AnserWithTextAndPhoto:
@@ -108,9 +92,7 @@ namespace Smarteye.VRGardening.NPC
                                     string.IsNullOrEmpty(anserWithTextAndPhotoContent.firstParagraph) ||
                                     string.IsNullOrEmpty(anserWithTextAndPhotoContent.SecondParagraph) ||
                                     anserWithTextAndPhotoContent.illustarationImage == null || anserWithTextAndPhotoContent.formatUI == null)
-                                {
-                                    throw new InvalidOperationException("AnserWithTextAndPhotoContent fields cannot be null or empty.");
-                                }
+                                    throw new ArgumentNullException(nameof(anserWithTextAndPhotoContent), "AnserWithTextAndPhotoContent fields cannot be null or empty.");
                                 return anserWithTextAndPhotoContent;
 
                             default:
@@ -128,16 +110,57 @@ namespace Smarteye.VRGardening.NPC
 
         private void Start()
         {
-            canvasBtnOpenDialog.GetComponentInChildren<Button>().onClick.AddListener(OpenQuestionCanvas);
+            Button openDialogButton = canvasBtnOpenDialog.GetComponentInChildren<Button>();
+            if (openDialogButton == null)
+            {
+                Debug.LogWarning("OpenDialog button is missing.");
+                return;
+            }
+            openDialogButton.onClick.AddListener(OpenQuestionCanvas);
+            UpdateCurrentDialogArea(DialogArea.PlantIntroduction);
+        }
+
+        public void UpdateCurrentDialogArea(DialogArea newArea)
+        {
+            currentDialogArea = newArea;
+            UpdateDialogeState(DialogManager.DialogState.DialogIdle);
+        }
+
+        private void SetCanvasVisibility(bool questionCanvasActive, bool openDialogButtonActive)
+        {
+            canvasDialogQuestion.gameObject.SetActive(questionCanvasActive);
+            canvasBtnOpenDialog.SetActive(openDialogButtonActive);
+        }
+
+        public void UpdateDialogeState(DialogManager.DialogState newState)
+        {
+            switch (newState)
+            {
+                case DialogManager.DialogState.DialogIdle:
+                    SetCanvasVisibility(false, true);
+                    break;
+                case DialogManager.DialogState.OpeningQuestion:
+                    SetCanvasVisibility(true, false);
+                    break;
+                case DialogManager.DialogState.AnsweringQuestion:
+                    SetCanvasVisibility(false, false);
+                    break;
+            }
+            currentDialogState = newState;
         }
 
         public DialogSection.DialogContent GetCurrentDialogContent(DialogArea _dialogArea)
         {
+            if (ListDialogSection == null || ListDialogSection.Count == 0)
+            {
+                Debug.LogWarning("DialogSection list is empty.");
+                return default(DialogSection.DialogContent);
+            }
+
             var dialogSection = ListDialogSection.FirstOrDefault(x => x.dialogArea == _dialogArea);
 
             if (dialogSection.Equals(default(DialogSection)))
             {
-                // Handle case where no matching DialogSection is found
                 Debug.LogWarning($"No dialog content found for dialog area: {_dialogArea}");
                 return default(DialogSection.DialogContent);
             }
@@ -147,15 +170,8 @@ namespace Smarteye.VRGardening.NPC
 
         public void OpenQuestionCanvas()
         {
-            canvasDialogQuestion.ShowDilogQuestion(GetCurrentDialogContent(DialogArea.Gardening));
-
-            canvasBtnOpenDialog.SetActive(false);
+            UpdateDialogeState(DialogState.OpeningQuestion);
+            canvasDialogQuestion.ShowDilogQuestion(GetCurrentDialogContent(currentDialogArea));
         }
-    }
-
-    public enum DialogArea
-    {
-        // must add this section, if there is new section
-        None, Welcoming, PlantIntroduction, Gardening
     }
 }

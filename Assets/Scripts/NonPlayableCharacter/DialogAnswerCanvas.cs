@@ -11,6 +11,7 @@ namespace Smarteye.VRGardening.NPC
     {
         public DialogManager.DialogSection.DialogContent.QnAContent.ContentType contentType;
 
+        [Header("Component Dependencies")]
         public AnserWithTextDependencies anserWithTextComponent;
         public AnserWithTextAndPhotoDependencies anserWithTextAndPhotoComponent;
 
@@ -18,6 +19,8 @@ namespace Smarteye.VRGardening.NPC
         public struct AnserWithTextDependencies
         {
             public TextMeshProUGUI textParagraph;
+            public Button btnCloseAnswerPanel;
+            public Button btnBackToQuestion;
         }
 
         [Serializable]
@@ -26,28 +29,52 @@ namespace Smarteye.VRGardening.NPC
             public TextMeshProUGUI textParagraph1;
             public TextMeshProUGUI textParagraph2;
             public Image imageItem;
+            public Button btnCloseAnswerPanel;
+            public Button btnBackToQuestion;
         }
 
-        [Header("Component Dependencies")]
-        public Button btnBackToQuestion;
+        public Button btnCloseCanvas;
+
+        // Helper function to validate if an object is null
+        private void ValidateNotNull(object obj, string objName)
+        {
+            if (obj == null)
+                throw new InvalidOperationException($"{objName} cannot be null or empty.");
+        }
+
+        // Helper function to set button listeners
+        private void SetButtonListeners(Button closeButton, Button backButton, Action<DialogManager.DialogState> backToQuestionFunction)
+        {
+            closeButton.onClick.AddListener(() =>
+            {
+                backToQuestionFunction(DialogManager.DialogState.DialogIdle);
+                Destroy(this.gameObject);
+            });
+
+            backButton.onClick.AddListener(() =>
+            {
+                backToQuestionFunction(DialogManager.DialogState.OpeningQuestion);
+                Destroy(this.gameObject);
+            });
+        }
 
         public void SetupAnswerCanvas(object[] argDataAnswer, Action<DialogManager.DialogState> BackToQuestionFunction)
         {
-            DialogManager.DialogSection.DialogContent.QnAContent.ContentType myType = (DialogManager.DialogSection.DialogContent.QnAContent.ContentType)argDataAnswer[0];
+            DialogManager.DialogSection.DialogContent.QnAContent.ContentType myType =
+                (DialogManager.DialogSection.DialogContent.QnAContent.ContentType)argDataAnswer[0];
 
             if (myType == DialogManager.DialogSection.DialogContent.QnAContent.ContentType.AnserWithText)
             {
                 string text1 = (string)argDataAnswer[1];
 
-                if (anserWithTextComponent.textParagraph)
-                    anserWithTextComponent.textParagraph.text = text1;
-                else throw new InvalidOperationException("anserWithTextComponent.textParagraph cannot be null or empty.");
+                ValidateNotNull(anserWithTextComponent.textParagraph, "anserWithTextComponent.textParagraph");
+                anserWithTextComponent.textParagraph.text = text1;
 
-                btnBackToQuestion.GetComponent<Button>().onClick.AddListener(() =>
-                {
-                    BackToQuestionFunction(DialogManager.DialogState.OpeningQuestion);
-                    OnCloseOrDestroyCanvas();
-                });
+                SetButtonListeners(
+                    anserWithTextComponent.btnCloseAnswerPanel,
+                    anserWithTextComponent.btnBackToQuestion,
+                    BackToQuestionFunction
+                );
             }
             else if (myType == DialogManager.DialogSection.DialogContent.QnAContent.ContentType.AnserWithTextAndPhoto)
             {
@@ -55,27 +82,26 @@ namespace Smarteye.VRGardening.NPC
                 string text2 = (string)argDataAnswer[2];
                 Sprite spriteImage = (Sprite)argDataAnswer[3];
 
-                if (anserWithTextAndPhotoComponent.textParagraph1)
-                    anserWithTextAndPhotoComponent.textParagraph1.text = text1;
-                else throw new InvalidOperationException("anserWithTextAndPhotoComponent.textParagraph1 cannot be null or empty.");
-                if (anserWithTextAndPhotoComponent.textParagraph2)
-                    anserWithTextAndPhotoComponent.textParagraph2.text = text2;
-                else throw new InvalidOperationException("anserWithTextAndPhotoComponent.textParagraph2 cannot be null or empty.");
-                if (anserWithTextAndPhotoComponent.imageItem)
-                    anserWithTextAndPhotoComponent.imageItem.sprite = spriteImage;
-                else throw new InvalidOperationException("anserWithTextAndPhotoComponent.imageItem cannot be null or empty.");
+                ValidateNotNull(anserWithTextAndPhotoComponent.textParagraph1, "anserWithTextAndPhotoComponent.textParagraph1");
+                ValidateNotNull(anserWithTextAndPhotoComponent.textParagraph2, "anserWithTextAndPhotoComponent.textParagraph2");
+                ValidateNotNull(anserWithTextAndPhotoComponent.imageItem, "anserWithTextAndPhotoComponent.imageItem");
 
-                btnBackToQuestion.GetComponent<Button>().onClick.AddListener(() =>
-                {
-                    BackToQuestionFunction(DialogManager.DialogState.OpeningQuestion);
-                    OnCloseOrDestroyCanvas();
-                });
+                anserWithTextAndPhotoComponent.textParagraph1.text = text1;
+                anserWithTextAndPhotoComponent.textParagraph2.text = text2;
+                anserWithTextAndPhotoComponent.imageItem.sprite = spriteImage;
+
+                SetButtonListeners(
+                    anserWithTextAndPhotoComponent.btnCloseAnswerPanel,
+                    anserWithTextAndPhotoComponent.btnBackToQuestion,
+                    BackToQuestionFunction
+                );
             }
-        }
 
-        public void OnCloseOrDestroyCanvas()
-        {
-            Destroy(this.gameObject);
+            btnCloseCanvas.onClick.AddListener(() =>
+            {
+                BackToQuestionFunction(DialogManager.DialogState.DialogIdle);
+                Destroy(this.gameObject);
+            });
         }
     }
 }

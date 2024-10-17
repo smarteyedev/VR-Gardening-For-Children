@@ -9,14 +9,14 @@ namespace Smarteye.VRGardening.NPC
         private SerializedProperty contentType;
         private SerializedProperty anserWithTextComponent;
         private SerializedProperty anserWithTextAndPhotoComponent;
-        private SerializedProperty btnBack;
+        private SerializedProperty btnCloseCanvas;
 
         private void OnEnable()
         {
             contentType = serializedObject.FindProperty("contentType");
             anserWithTextComponent = serializedObject.FindProperty("anserWithTextComponent");
             anserWithTextAndPhotoComponent = serializedObject.FindProperty("anserWithTextAndPhotoComponent");
-            btnBack = serializedObject.FindProperty("btnBackToQuestion");
+            btnCloseCanvas = serializedObject.FindProperty("btnCloseCanvas");
         }
 
         public override void OnInspectorGUI()
@@ -33,17 +33,18 @@ namespace Smarteye.VRGardening.NPC
             {
                 case DialogManager.DialogSection.DialogContent.QnAContent.ContentType.AnserWithText:
                     EditorGUILayout.PropertyField(anserWithTextComponent, new GUIContent("Anser With Text Component"), true);
-                    EditorGUILayout.PropertyField(btnBack, new GUIContent("Button Back to Question"), true);
                     break;
                 case DialogManager.DialogSection.DialogContent.QnAContent.ContentType.AnserWithTextAndPhoto:
                     EditorGUILayout.PropertyField(anserWithTextAndPhotoComponent, new GUIContent("Anser With Text And Photo Component"), true);
-                    EditorGUILayout.PropertyField(btnBack, new GUIContent("Button Back to Question"), true);
                     break;
                 case DialogManager.DialogSection.DialogContent.QnAContent.ContentType.Custom:
                 default:
                     // Jangan tampilkan apa pun jika None
                     break;
             }
+
+            EditorGUILayout.Space(5f);
+            EditorGUILayout.PropertyField(btnCloseCanvas, new GUIContent("Button Back to Question"), true);
 
             serializedObject.ApplyModifiedProperties();
         }

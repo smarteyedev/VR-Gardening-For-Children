@@ -515,11 +515,15 @@ MonoBehaviour:
   contentType: 0
   anserWithTextComponent:
     textParagraph: {fileID: 0}
+    btnCloseAnswerPanel: {fileID: 0}
+    btnBackToQuestion: {fileID: 0}
   anserWithTextAndPhotoComponent:
     textParagraph1: {fileID: 0}
     textParagraph2: {fileID: 0}
     imageItem: {fileID: 0}
-  btnBackToQuestion: {fileID: 0}
+    btnCloseAnswerPanel: {fileID: 0}
+    btnBackToQuestion: {fileID: 0}
+  btnCloseCanvas: {fileID: 6329903297719625248}
 --- !u!114 &1461763093196435856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,7 +902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 336.06, y: 0}
+  m_AnchoredPosition: {x: 628.39, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7760128499930746205
@@ -3482,19 +3486,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1672478193295913827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1370184996437104686}
-        m_TargetAssemblyTypeName: Smarteye.VRGardening.NPC.DialogAnswerCanvas, Assembly-CSharp
-        m_MethodName: OnCloseOrDestroyCanvas
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6218971043088744121
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,7 +3601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 264.06, y: 0}
+  m_AnchoredPosition: {x: 355.34, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7184803766711095330
@@ -3805,7 +3797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 414.06, y: 0}
+  m_AnchoredPosition: {x: 816.16, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &263965619208805748

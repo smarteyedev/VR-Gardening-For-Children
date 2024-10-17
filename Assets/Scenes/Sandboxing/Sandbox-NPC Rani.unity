@@ -918,6 +918,8 @@ MonoBehaviour:
   m_stagingData:
     openingDialogTitle: 
     QNAContents: []
+  dialogManager: {fileID: 1258438255}
+  closeBtn: {fileID: 187682810}
   textOpeningDialog: {fileID: 1786120058}
   parentOptionBtn: {fileID: 2092206306}
   prefabOptionBtn: {fileID: 2752805892366538743, guid: 772517e8a4b918545b13dfead1756b20,
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d17e66d422cc8f479f539b20f296adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDialogState: 0
   ListDialogSection:
   - dialogArea: 2
     dialogContents:

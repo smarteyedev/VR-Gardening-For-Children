@@ -593,25 +593,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &676575844
-RectTransform:
+--- !u!4 &676575844
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676575843}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.427}
-  m_LocalScale: {x: 0.0013801, y: 0.0013801, z: 0.0013801}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 1.068, z: 0.427}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1258438254}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.068}
-  m_SizeDelta: {x: 975, y: 632}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +920,6 @@ MonoBehaviour:
   parentOptionBtn: {fileID: 2092206306}
   prefabOptionBtn: {fileID: 2752805892366538743, guid: 772517e8a4b918545b13dfead1756b20,
     type: 3}
-  parentGOTransform: {fileID: 1258438254}
   instantiatePosition: {fileID: 676575844}
 --- !u!1 &1064975394
 GameObject:
@@ -1043,102 +1038,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentDialogState: 0
+  currentDialogArea: 0
   ListDialogSection:
-  - dialogArea: 2
-    dialogContents:
-      openingDialogTitle: 'Halo! Aku Rani, pemandu teman-teman di Desa Tanam Pohon.
-        Ada yang bisa aku bantu? '
-      QNAContents:
-      - contentType: 1
-        customContent:
-          playerQuestion: 
-          formatUI: {fileID: 0}
-        anserWithTextContent:
-          playerQuestion: Apa itu Desa Tanam Pohon?
-          NpcAnswer: Desa Tanam Pohon adalah tempat di mana teman-teman bisa belajar
-            tentang tanaman dan cara menanamnya! Tanaman yang ada pada desa ini adalah
-            tomat dan jeruk.
-          formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
-            type: 3}
-        anserWithTextAndPhotoContent:
-          playerQuestion: 
-          illustarationImage: {fileID: 0}
-          firstParagraph: 
-          SecondParagraph: 
-          formatUI: {fileID: 0}
-      - contentType: 1
-        customContent:
-          playerQuestion: 
-          formatUI: {fileID: 0}
-        anserWithTextContent:
-          playerQuestion: Mengapa menanam itu penting?
-          NpcAnswer: Teman-teman bisa masuk ke dalam rumah kaca di belakang dan mulai
-            mengerjakan misi untuk belajar menanam!
-          formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
-            type: 3}
-        anserWithTextAndPhotoContent:
-          playerQuestion: 
-          illustarationImage: {fileID: 0}
-          firstParagraph: 
-          SecondParagraph: 
-          formatUI: {fileID: 0}
-      - contentType: 1
-        customContent:
-          playerQuestion: 
-          formatUI: {fileID: 0}
-        anserWithTextContent:
-          playerQuestion: Bagaimana cara aku bisa mulai menanam?
-          NpcAnswer: Tanaman memberi kita oksigen untuk bernapas, menjaga lingkungan,
-            dan juga berperan penting bagi hewan. Selain itu, kita bisa mendapatkan
-            makanan yang enak dan sehat dari tanaman. Dengan menanam, kita membuat
-            bumi dan diri kita lebih sehat!
-          formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
-            type: 3}
-        anserWithTextAndPhotoContent:
-          playerQuestion: 
-          illustarationImage: {fileID: 0}
-          firstParagraph: 
-          SecondParagraph: 
-          formatUI: {fileID: 0}
-  - dialogArea: 3
-    dialogContents:
-      openingDialogTitle: 'Halo! Aku Rani, pemandu teman-teman di Desa Tanam Pohon.
-        Ada yang bisa aku bantu? '
-      QNAContents:
-      - contentType: 0
-        customContent:
-          playerQuestion: Apa saja langkah-langkah dalam menanam?
-          formatUI: {fileID: 1370184996437104686, guid: e48299e984766874daaf78af1130c72b,
-            type: 3}
-        anserWithTextContent:
-          playerQuestion: 
-          NpcAnswer: 
-          formatUI: {fileID: 0}
-        anserWithTextAndPhotoContent:
-          playerQuestion: 
-          illustarationImage: {fileID: 0}
-          firstParagraph: 
-          SecondParagraph: 
-          formatUI: {fileID: 0}
-      - contentType: 2
-        customContent:
-          playerQuestion: 
-          formatUI: {fileID: 0}
-        anserWithTextContent:
-          playerQuestion: 
-          NpcAnswer: 
-          formatUI: {fileID: 0}
-        anserWithTextAndPhotoContent:
-          playerQuestion: Kapan tanaman harus disiram atau dipupuk?
-          illustarationImage: {fileID: 21300000, guid: e0c589d584f7ecc41ad2231681457557,
-            type: 3}
-          firstParagraph: Garis hijau menunjukkan kebutuhan tanaman akan air/pupuk.
-            Jika garis belum penuh, tanaman masih butuh bahan tersebut untuk naik
-            level.
-          SecondParagraph: Contoh di bawah ini menunjukkan tanaman hanya butuh air
-            untuk level tersebut.
-          formatUI: {fileID: 6653529947730603700, guid: 0749360d40a472348bdb82e333c40363,
-            type: 3}
+  - {fileID: 11400000, guid: f15c76083cc82b94da30e0296e8c8ccf, type: 2}
+  - {fileID: 11400000, guid: cd13349f842702c43b07cf383c42d3eb, type: 2}
   canvasDialogQuestion: {fileID: 1061528786}
   canvasBtnOpenDialog: {fileID: 1889305138}
 --- !u!1 &1281427800
@@ -1898,7 +1801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1889305139
 RectTransform:
   m_ObjectHideFlags: 0

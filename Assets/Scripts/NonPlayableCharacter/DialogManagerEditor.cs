@@ -6,7 +6,7 @@ namespace Smarteye.VRGardening.NPC
     [CustomEditor(typeof(DialogManager))]
     public class DialogManagerEditor : Editor
     {
-        private SerializedProperty listDialogSection;
+        /* private SerializedProperty listDialogSection;
         private SerializedProperty dialogQuestion;
         private SerializedProperty canvasOpen;
 
@@ -90,6 +90,6 @@ namespace Smarteye.VRGardening.NPC
 
             // Apply changes to serialized object
             serializedObject.ApplyModifiedProperties();
-        }
+        } */
     }
 }

@@ -9,7 +9,7 @@ namespace Smarteye.VRGardening.NPC
 {
     public class DialogAnswerCanvas : MonoBehaviour
     {
-        public DialogManager.DialogSection.DialogContent.QnAContent.ContentType contentType;
+        public DialogSection.DialogContent.QnAContent.ContentType contentType;
 
         [Header("Component Dependencies")]
         public AnserWithTextDependencies anserWithTextComponent;
@@ -60,10 +60,10 @@ namespace Smarteye.VRGardening.NPC
 
         public void SetupAnswerCanvas(object[] argDataAnswer, Action<DialogManager.DialogState> BackToQuestionFunction)
         {
-            DialogManager.DialogSection.DialogContent.QnAContent.ContentType myType =
-                (DialogManager.DialogSection.DialogContent.QnAContent.ContentType)argDataAnswer[0];
+            DialogSection.DialogContent.QnAContent.ContentType myType =
+                (DialogSection.DialogContent.QnAContent.ContentType)argDataAnswer[0];
 
-            if (myType == DialogManager.DialogSection.DialogContent.QnAContent.ContentType.AnserWithText)
+            if (myType == DialogSection.DialogContent.QnAContent.ContentType.AnserWithText)
             {
                 string text1 = (string)argDataAnswer[1];
 
@@ -76,7 +76,7 @@ namespace Smarteye.VRGardening.NPC
                     BackToQuestionFunction
                 );
             }
-            else if (myType == DialogManager.DialogSection.DialogContent.QnAContent.ContentType.AnserWithTextAndPhoto)
+            else if (myType == DialogSection.DialogContent.QnAContent.ContentType.AnserWithTextAndPhoto)
             {
                 string text1 = (string)argDataAnswer[1];
                 string text2 = (string)argDataAnswer[2];

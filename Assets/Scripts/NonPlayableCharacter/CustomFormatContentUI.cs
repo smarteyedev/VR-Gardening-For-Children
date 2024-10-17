@@ -22,8 +22,9 @@ namespace Smarteye.VRGardening.NPC
 
         [Header("UI Dependencies")]
         // content view
+        public RectTransform parentView;
         public TextMeshProUGUI textTitle;
-        public TextMeshProUGUI textdescription;
+        public TextMeshProUGUI textDescription;
         public Image imgContent;
 
         [Space(10f)]
@@ -33,11 +34,21 @@ namespace Smarteye.VRGardening.NPC
 
         private int m_index = 2;
 
-        private void OnEnable()
+        private void Start()
         {
             OnChangeContentView(0);
 
             // ! must create new fuction if is not destroyable gameobject
+        }
+
+        private void OnEnable()
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(parentView);
+
+            foreach (var item in btnOption)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(item.rectTransform);
+            }
         }
 
         public void UpdateBtnSprite()
@@ -57,7 +68,7 @@ namespace Smarteye.VRGardening.NPC
             m_index = newIndex;
 
             textTitle.text = customContents[m_index].title;
-            textdescription.text = customContents[m_index].description;
+            textDescription.text = customContents[m_index].description;
             imgContent.sprite = customContents[m_index].spriteImg;
 
             UpdateBtnSprite();

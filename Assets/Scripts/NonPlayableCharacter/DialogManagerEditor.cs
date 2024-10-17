@@ -7,7 +7,8 @@ namespace Smarteye.VRGardening.NPC
     public class DialogManagerEditor : Editor
     {
         private SerializedProperty listDialogSection;
-        private SerializedProperty mainDialogPanel;
+        private SerializedProperty dialogQuestion;
+        private SerializedProperty canvasOpen;
 
         // Variabel pagination
         private int currentPage = 0;
@@ -17,7 +18,8 @@ namespace Smarteye.VRGardening.NPC
         {
             // Mendapatkan referensi dari serialized properties
             listDialogSection = serializedObject.FindProperty("ListDialogSection");
-            mainDialogPanel = serializedObject.FindProperty("mainDialogPanel");
+            dialogQuestion = serializedObject.FindProperty("canvasDialogQuestion");
+            canvasOpen = serializedObject.FindProperty("canvasBtnOpenDialog");
         }
 
         public override void OnInspectorGUI()
@@ -82,8 +84,9 @@ namespace Smarteye.VRGardening.NPC
 
             EditorGUILayout.EndHorizontal();
 
-            // Menampilkan properti mainDialogPanel di bagian akhir
-            EditorGUILayout.PropertyField(mainDialogPanel, new GUIContent("Main Dialog Panel"));
+            // Menampilkan properti lainnya di bagian akhir
+            EditorGUILayout.PropertyField(dialogQuestion, new GUIContent("Canvas Dialog Question"));
+            EditorGUILayout.PropertyField(canvasOpen, new GUIContent("Canvas Button Open Dialog"));
 
             // Apply changes to serialized object
             serializedObject.ApplyModifiedProperties();

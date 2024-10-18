@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56582e3843de83e47bfb0c5022ae592a, type: 3}
+  m_Name: Rani-DirectFeedback-ToolsIntroduction
+  m_EditorClassIdentifier: 
+  dialogArea: 2
+  feedbackContents:
+  - feedbackType: 2
+    identity: 1
+    textPopupContent:
+      scriptText: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    textPhotoPopupContent:
+      firstParagraph: Objek yang teman-teman ambil adalah <b>alat penyiram tanaman</b>
+      secondParagraph: Tanaman membutuhkan air untuk pertumbuhannya, teman-teman
+        bisa pakai alat ini untuk merawat tanaman!
+      PhotoSprite: {fileID: 21300000, guid: f2f3992d44b5a3f41bf37bd2526ea5fc, type: 3}
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    animationContent:
+      animationName: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+  - feedbackType: 2
+    identity: 2
+    textPopupContent:
+      scriptText: cobacoba nih bos
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    textPhotoPopupContent:
+      firstParagraph: Objek yang teman-teman ambil adalah <b>pot bunga</b>
+      secondParagraph: Pot bunga berfungsi sebagai wadah untuk menanam dan merawat
+        tanaman.
+      PhotoSprite: {fileID: 21300000, guid: 77d6159d2f6982247b18fc18caa9fca5, type: 3}
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    animationContent:
+      animationName: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+  - feedbackType: 2
+    identity: 3
+    textPopupContent:
+      scriptText: cobacoba nih bos
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    textPhotoPopupContent:
+      firstParagraph: Objek yang teman-teman ambil adalah <b>benih tanaman</b>
+      secondParagraph: Benih ini dapat ditanam sehingga bertumbuh menjadi tanaman
+        yang biasa teman-teman lihat.
+      PhotoSprite: {fileID: 21300000, guid: 853aa78785af6cd4d9f7fc3d767bfd1f, type: 3}
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    animationContent:
+      animationName: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+  - feedbackType: 2
+    identity: 4
+    textPopupContent:
+      scriptText: cobacoba nih bos
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    textPhotoPopupContent:
+      firstParagraph: Objek yang teman-teman ambil adalah <b>pupuk tanaman</b>
+      secondParagraph: Pupuk berguna sebagai nutrisi untuk tanaman agar dapat bertumbuh
+        dan berkembang.
+      PhotoSprite: {fileID: 21300000, guid: 586e1920b5642a4488ddf99d2b15540f, type: 3}
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    animationContent:
+      animationName: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+  - feedbackType: 2
+    identity: 5
+    textPopupContent:
+      scriptText: cobacoba nih bos
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    textPhotoPopupContent:
+      firstParagraph: Objek yang teman-teman ambil adalah <b>keranjang</b>
+      secondParagraph: Setelah panen, teman-teman bisa memasukkan buah ke dalam keranjang.
+      PhotoSprite: {fileID: 21300000, guid: e6b78c6111a5e9c4f892aa895f73034a, type: 3}
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}
+    animationContent:
+      animationName: 
+      isUsingAudio: 0
+      speakAudio: {fileID: 0}

@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d30b21a2a2225438eb9e9b7096735c, type: 3}
+  m_Name: Rani-DialogSectionArea-PlantIntroduction
+  m_EditorClassIdentifier: 
+  interactionArea: 2
+  dialogContents:
+    openingDialogTitle: 'Halo! Aku Rani, pemandu teman-teman di Desa Tanam Pohon.
+      Ada yang bisa aku bantu? '
+    QNAContents:
+    - contentType: 1
+      customContent:
+        playerQuestion: 
+        formatUI: {fileID: 0}
+      answerWithTextContent:
+        playerQuestion: 'Apa itu Desa Tanam Pohon? '
+        NpcAnswer: Desa Tanam Pohon adalah tempat di mana teman-teman bisa belajar
+          tentang tanaman dan cara menanamnya! Tanaman yang ada pada desa ini adalah
+          tomat dan jeruk.
+        formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
+          type: 3}
+      answerWithTextAndPhotoContent:
+        playerQuestion: 
+        PhotoSprite: {fileID: 0}
+        firstParagraph: 
+        secondParagraph: 
+        formatUI: {fileID: 0}
+    - contentType: 1
+      customContent:
+        playerQuestion: 
+        formatUI: {fileID: 0}
+      answerWithTextContent:
+        playerQuestion: Mengapa menanam itu penting?
+        NpcAnswer: Teman-teman bisa masuk ke dalam rumah kaca di belakang dan mulai
+          mengerjakan misi untuk belajar menanam!
+        formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
+          type: 3}
+      answerWithTextAndPhotoContent:
+        playerQuestion: 
+        PhotoSprite: {fileID: 0}
+        firstParagraph: 
+        secondParagraph: 
+        formatUI: {fileID: 0}
+    - contentType: 1
+      customContent:
+        playerQuestion: 
+        formatUI: {fileID: 0}
+      answerWithTextContent:
+        playerQuestion: Bagaimana cara aku bisa mulai menanam?
+        NpcAnswer: Tanaman memberi kita oksigen untuk bernapas, menjaga lingkungan,
+          dan juga berperan penting bagi hewan. Selain itu, kita bisa mendapatkan
+          makanan yang enak dan sehat dari tanaman. Dengan menanam, kita membuat
+          bumi dan diri kita lebih sehat!
+        formatUI: {fileID: 3022390831953900334, guid: 8aab68401856780469e263cd1c1b6573,
+          type: 3}
+      answerWithTextAndPhotoContent:
+        playerQuestion: 
+        PhotoSprite: {fileID: 0}
+        firstParagraph: 
+        secondParagraph: 
+        formatUI: {fileID: 0}

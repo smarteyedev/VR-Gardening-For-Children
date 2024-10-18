@@ -41,9 +41,11 @@ MonoBehaviour:
         NpcAnswer: 
         formatUI: {fileID: 0}
       answerWithTextAndPhotoContent:
-        playerQuestion: aa
+        playerQuestion: Kapan tanaman harus disiram atau dipupuk?
         PhotoSprite: {fileID: 21300000, guid: e0c589d584f7ecc41ad2231681457557, type: 3}
-        firstParagraph: sd
-        secondParagraph: dsaf
+        firstParagraph: Garis hijau menunjukkan kebutuhan tanaman akan air/pupuk.
+          Jika garis belum penuh, tanaman masih butuh bahan tersebut untuk naik level.
+        secondParagraph: Garis hijau menunjukkan kebutuhan tanaman akan air/pupuk.
+          Jika garis belum penuh, tanaman masih butuh bahan tersebut untuk naik level.
         formatUI: {fileID: 6653529947730603700, guid: 0749360d40a472348bdb82e333c40363,
           type: 3}

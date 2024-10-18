@@ -13,15 +13,15 @@ namespace Smarteye.VRGardening.NPC
 
     public class InteractionManager : MonoBehaviour
     {
-        public enum DialogState
+        public enum InteractionState
         {
-            None, InteractionIdle, OpeningQuestion, AnsweringQuestion
+            None, InteractionIdle, StandByDialog, OpeningQuestion, AnsweringQuestion, OverlappingByFeedback, GivingFeedback
         }
 
         [Header("Interaction Config")]
         [Space(4f)]
         [ReadOnly] public InteractionArea currentInteractionArea = InteractionArea.None;
-        [ReadOnly] public DialogState currentDialogState = DialogState.None;
+        [ReadOnly] public InteractionState currentDialogState = InteractionState.None;
         [Space(5f)]
         [SerializeField] private List<DialogSection> ListDialogSection;
         [Space(5f)]
@@ -44,14 +44,33 @@ namespace Smarteye.VRGardening.NPC
                 return;
             }
             openDialogButton.onClick.AddListener(OpenQuestionCanvas);
-            UpdateCurrentDialogArea(InteractionArea.ToolsIntroductinon);
+
+
+            //! Example
+            UpdateCurrentDialogArea(InteractionArea.PlantIntroduction);
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                PlayFeedback(currentInteractionArea, 0);
+                PlayFeedback(currentInteractionArea, 1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                PlayFeedback(currentInteractionArea, 2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                PlayFeedback(currentInteractionArea, 3);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                PlayFeedback(currentInteractionArea, 4);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                PlayFeedback(currentInteractionArea, 5);
             }
         }
 
@@ -62,11 +81,11 @@ namespace Smarteye.VRGardening.NPC
             var currentContent = GetContentDataOnList(ListDialogSection, x => x.interactionArea == currentInteractionArea);
             if (currentContent == null)
             {
-                UpdateDialogeState(DialogState.None);
+                UpdateDialogeState(InteractionState.None);
             }
             else
             {
-                UpdateDialogeState(DialogState.InteractionIdle);
+                UpdateDialogeState(InteractionState.StandByDialog);
             }
         }
 
@@ -76,20 +95,26 @@ namespace Smarteye.VRGardening.NPC
             canvasBtnOpenDialog.SetActive(openDialogButtonActive);
         }
 
-        public void UpdateDialogeState(DialogState newState)
+        private void UpdateDialogeState(InteractionState newState)
         {
             switch (newState)
             {
-                case DialogState.None:
+                case InteractionState.None:
                     SetCanvasVisibility(false, false);
                     break;
-                case DialogState.InteractionIdle:
+                case InteractionState.InteractionIdle:
+                    SetCanvasVisibility(false, false);
+                    break;
+                case InteractionState.StandByDialog:
                     SetCanvasVisibility(false, true);
                     break;
-                case DialogState.OpeningQuestion:
+                case InteractionState.OpeningQuestion:
                     SetCanvasVisibility(true, false);
                     break;
-                case DialogState.AnsweringQuestion:
+                case InteractionState.AnsweringQuestion:
+                    SetCanvasVisibility(false, false);
+                    break;
+                case InteractionState.OverlappingByFeedback:
                     SetCanvasVisibility(false, false);
                     break;
             }
@@ -120,7 +145,7 @@ namespace Smarteye.VRGardening.NPC
 
         public void OpenQuestionCanvas()
         {
-            UpdateDialogeState(DialogState.OpeningQuestion);
+            UpdateDialogeState(InteractionState.OpeningQuestion);
             var currentContent = GetContentDataOnList(ListDialogSection, x => x.interactionArea == currentInteractionArea);
             if (currentContent != null)
             {
@@ -128,14 +153,37 @@ namespace Smarteye.VRGardening.NPC
             }
             else
             {
-                UpdateDialogeState(DialogState.None);
+                UpdateDialogeState(InteractionState.None);
             }
         }
 
         public void PlayFeedback(InteractionArea _dialogArea, int feedbackIdentity)
         {
             var _data = GetContentDataOnList(ListDirectFeedback, x => x.dialogArea == _dialogArea);
-            feedbackController.ShowDirectFeedback(_data.feedbackContents.FirstOrDefault((x) => x.identity == feedbackIdentity));
+            if (_data != null)
+            {
+                feedbackController.ShowDirectFeedback(_data.feedbackContents.FirstOrDefault((x) => x.identity == feedbackIdentity));
+
+                if (currentDialogState == InteractionState.InteractionIdle)
+                {
+                    UpdateDialogeState(InteractionState.GivingFeedback);
+                }
+                else if (currentDialogState == InteractionState.StandByDialog ||
+                currentDialogState == InteractionState.OpeningQuestion || currentDialogState == InteractionState.AnsweringQuestion)
+                {
+                    UpdateDialogeState(InteractionState.OverlappingByFeedback);
+                }
+            }
+            else Debug.LogWarning("can't get data");
+        }
+
+        public void ChangeInteractionState(InteractionManager.InteractionState newState)
+        {
+            if (currentDialogState == InteractionState.OverlappingByFeedback)
+            {
+                UpdateDialogeState(InteractionState.StandByDialog);
+            }
+            else UpdateDialogeState(newState);
         }
 
     }

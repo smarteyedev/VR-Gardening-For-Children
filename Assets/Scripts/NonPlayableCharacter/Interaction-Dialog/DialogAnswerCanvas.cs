@@ -43,22 +43,22 @@ namespace Smarteye.VRGardening.NPC
         }
 
         // Helper function to set button listeners
-        private void SetButtonListeners(Button closeButton, Button backButton, Action<InteractionManager.DialogState> backToQuestionFunction)
+        private void SetButtonListeners(Button closeButton, Button backButton, Action<InteractionManager.InteractionState> backToQuestionFunction)
         {
             closeButton.onClick.AddListener(() =>
             {
-                backToQuestionFunction(InteractionManager.DialogState.InteractionIdle);
+                backToQuestionFunction(InteractionManager.InteractionState.StandByDialog);
                 Destroy(this.gameObject);
             });
 
             backButton.onClick.AddListener(() =>
             {
-                backToQuestionFunction(InteractionManager.DialogState.OpeningQuestion);
+                backToQuestionFunction(InteractionManager.InteractionState.OpeningQuestion);
                 Destroy(this.gameObject);
             });
         }
 
-        public void SetupAnswerCanvas(object[] argDataAnswer, Action<InteractionManager.DialogState> BackToQuestionFunction)
+        public void SetupAnswerCanvas(object[] argDataAnswer, Action<InteractionManager.InteractionState> BackToQuestionFunction)
         {
             DialogSection.DialogContent.QnAContent.ContentType myType =
                 (DialogSection.DialogContent.QnAContent.ContentType)argDataAnswer[0];
@@ -99,24 +99,40 @@ namespace Smarteye.VRGardening.NPC
 
             btnCloseCanvas.onClick.AddListener(() =>
             {
-                BackToQuestionFunction(InteractionManager.DialogState.InteractionIdle);
+                BackToQuestionFunction(InteractionManager.InteractionState.StandByDialog);
                 Destroy(this.gameObject);
             });
         }
 
-        public void SetupFeedbackCanvas(object[] argDataFeedback, Action<InteractionManager.DialogState> BackToQuestionFunction)
+        public void SetupFeedbackCanvas(object[] argDataFeedback, Action<InteractionManager.InteractionState> BackToQuestionFunction)
         {
             DirectFeedback.FeedbackContent.FeedbackType feedbackType = (DirectFeedback.FeedbackContent.FeedbackType)argDataFeedback[0];
 
             if (feedbackType == DirectFeedback.FeedbackContent.FeedbackType.TextPopup)
             {
+                string text1 = (string)argDataFeedback[1];
+                AudioClip audioClip = (AudioClip)argDataFeedback[2];
 
+                ValidateNotNull(anserWithTextComponent.textParagraph, "anserWithTextAndPhotoComponent.textParagraph1");
+                anserWithTextComponent.textParagraph.text = text1;
+
+                if (audioClip)
+                {
+                    // play sound
+                }
+
+                btnCloseCanvas.onClick.AddListener(() =>
+                {
+                    BackToQuestionFunction(InteractionManager.InteractionState.None);
+                    Destroy(this.gameObject);
+                });
             }
             else if (feedbackType == DirectFeedback.FeedbackContent.FeedbackType.TextPhotoPopup)
             {
                 string text1 = (string)argDataFeedback[1];
                 string text2 = (string)argDataFeedback[2];
                 Sprite spriteImage = (Sprite)argDataFeedback[3];
+                AudioClip audioClip = (AudioClip)argDataFeedback[4];
 
                 ValidateNotNull(anserWithTextAndPhotoComponent.textParagraph1, "anserWithTextAndPhotoComponent.textParagraph1");
                 ValidateNotNull(anserWithTextAndPhotoComponent.textParagraph2, "anserWithTextAndPhotoComponent.textParagraph2");
@@ -126,9 +142,14 @@ namespace Smarteye.VRGardening.NPC
                 anserWithTextAndPhotoComponent.textParagraph2.text = text2;
                 anserWithTextAndPhotoComponent.imageItem.sprite = spriteImage;
 
+                if (audioClip)
+                {
+                    // play sound
+                }
+
                 btnCloseCanvas.onClick.AddListener(() =>
                 {
-                    BackToQuestionFunction(InteractionManager.DialogState.None);
+                    BackToQuestionFunction(InteractionManager.InteractionState.None);
                     Destroy(this.gameObject);
                 });
             }

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Smarteye.VRGardening.Utils;
 
 namespace Smarteye.VRGardening.NPC
 {
@@ -51,11 +52,7 @@ namespace Smarteye.VRGardening.NPC
             // Set opening dialog text
             textOpeningDialog.text = m_stagingData.openingDialogTitle;
 
-            // Bersihkan opsi yang sudah ada
-            foreach (Transform child in parentOptionBtn.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            GameObjectModification.ClearChildern(parentOptionBtn.transform);
 
             // Iterate over QnAContents
             for (int i = 0; i < m_stagingData.QNAContents.Count; i++)
@@ -107,15 +104,15 @@ namespace Smarteye.VRGardening.NPC
             DialogAnswerCanvas ansCom = Instantiate(prefabCanvas, instantiatePosition);
             ansCom.SetupAnswerCanvas(
                 argDataAnswer: argData,
-                BackToQuestionFunction: interactionManager.UpdateDialogeState
+                BackToQuestionFunction: interactionManager.ChangeInteractionState
             );
 
-            interactionManager.UpdateDialogeState(InteractionManager.DialogState.AnsweringQuestion);
+            interactionManager.ChangeInteractionState(InteractionManager.InteractionState.AnsweringQuestion);
         }
 
         public void CloseDialogQuestionCanvas()
         {
-            interactionManager.UpdateDialogeState(InteractionManager.DialogState.InteractionIdle);
+            interactionManager.ChangeInteractionState(InteractionManager.InteractionState.StandByDialog);
         }
     }
 }

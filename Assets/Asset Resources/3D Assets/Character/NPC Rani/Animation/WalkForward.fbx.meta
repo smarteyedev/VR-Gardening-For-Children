@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 17d0e9d6a765c8041aef41fe52405988
+guid: 6f4455de7531a704c99ed76a24c65a4c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -24,7 +24,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Talking
+      name: WalkForward
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 155
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

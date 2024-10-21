@@ -34,6 +34,10 @@ namespace Smarteye
                 int placeIndex = i % placeCount;
 
                 GameObject fruit = Instantiate(_fruitPrefab, _fruitPlace[placeIndex].position, Quaternion.identity);
+                Rigidbody rb = fruit.GetComponent<Rigidbody>();
+
+                rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+
                 fruit.transform.SetParent(_fruitPlace[placeIndex]);
 
                 fruit.transform.localPosition = Vector3.zero;
@@ -65,6 +69,9 @@ namespace Smarteye
 
             if (grabbedObject != null)
             {
+                Rigidbody rb = grabbedObject.GetComponent<Rigidbody>();
+                rb.constraints = RigidbodyConstraints.None;
+
                 _listHarvest.Remove(grabbedObject);
                 
                 grabbedObject.selectEntered.RemoveListener(OnGrabbed);

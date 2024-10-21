@@ -31,15 +31,14 @@ public class GameManager : MonoBehaviour {
     void Start() {
     }
 
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.T)) {
-            AddTomato();
-        }
-        if (Input.GetKeyDown(KeyCode.O)) {
-            AddOrange();
-
-        }
-    }
+    //void Update() {
+    //    if (Input.GetKeyDown(KeyCode.T)) {
+    //        AddTomato();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.O)) {
+    //        AddOrange();
+    //    }
+    //}
 
     public void AddScore(int points) {
         score += points;

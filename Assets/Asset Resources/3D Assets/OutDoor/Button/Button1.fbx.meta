@@ -3,7 +3,17 @@ guid: ebe88f10554830248a3556c34f6edba9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green
+    second: {fileID: 2100000, guid: 1bc13d238256c8e42b2d4390e999d56e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: KAYU 2
+    second: {fileID: 2100000, guid: b9e9880429eb3c84b8b1b8c269c74859, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

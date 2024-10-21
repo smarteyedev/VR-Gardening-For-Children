@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a0a4d85ec0b8243a4ba794b600a5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fruitPrefab: {fileID: 113244142029618842, guid: 0a52d0144d2c90142bc849f1a84f4d13,
+  _fruitPrefab: {fileID: 5411452723682988601, guid: fda87a5a13ad8164a8a1de29e83f4f0f,
     type: 3}
   _fruitPlace:
   - {fileID: 3355762912676566019}
@@ -62,6 +62,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5195165423330119972}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d14e90c62e5b46247b0fc3e2518e2d11,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d14e90c62e5b46247b0fc3e2518e2d11,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d14e90c62e5b46247b0fc3e2518e2d11,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d14e90c62e5b46247b0fc3e2518e2d11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -111,6 +126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d14e90c62e5b46247b0fc3e2518e2d11,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7290559764823486693, guid: d14e90c62e5b46247b0fc3e2518e2d11,
         type: 3}

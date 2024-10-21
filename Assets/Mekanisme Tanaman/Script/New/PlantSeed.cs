@@ -6,7 +6,6 @@ namespace Smarteye
 {
     public class PlantSeed : MonoBehaviour
     {
-        public bool hasScored;
         public PlantType plantType;
     }
 }
